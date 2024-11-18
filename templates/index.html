@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HBICS PICKUP SYSTEM</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"> <!-- Link to the CSS file -->
+    <script src="{{ url_for('static', filename='script.js') }}" defer></script>
+</head>
+<body>
+    <div class="container">
+        <h1>HBICS Pickup System</h1>
+        <div id="clock">00:00:00</div> <!-- Clock element -->
+        <form id="barcode-form">
+            <input type="text" id="barcode-input" placeholder="Scan or enter barcode" autofocus />
+            <button type="submit">Submit</button>
+        </form>
+
+        <ul id="student-list"></ul>
+    </div>
+
+    <div class="logo">
+        <img src="{{ url_for('static', filename='logohbics.png') }}" alt="HBICS Logo">
+        <div id="credits">Created by Yacobus Setiawan | HBICS</div> <!-- Created by text -->
+    </div>
+
+    <script>
+        function updateClock() {
+            const now = new Date();
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const seconds = String(now.getSeconds()).padStart(2, '0');
+            document.getElementById('clock').textContent = `${hours}:${minutes}:${seconds}`;
+        }
+
+        setInterval(updateClock, 1000); // Update the clock every second
+        updateClock(); // Initial call to display the clock immediately
+    </script>
+</body>
+</html>
